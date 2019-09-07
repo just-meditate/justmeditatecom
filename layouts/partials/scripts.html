@@ -1,0 +1,2 @@
+{{ $js := resources.Get "scripts.js" | minify }}
+<script defer type="text/javascript" src="{{ $js.Permalink }}"></script>
