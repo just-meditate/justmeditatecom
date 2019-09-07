@@ -6,7 +6,7 @@
     "build": "hugo -e production",
     "clean:node": "rm -rf node_modules",
     "clean": "rm -rf public resources",
-    "js": "babel assets/js/ --out-file assets/js/scripts.js && babel assets/sw.js --out-file src/sw.js",
+    "js": "babel assets/js/ --out-file assets/scripts.js && babel assets/sw.js --out-file src/sw.js",
     "start": "npm run js && hugo server --disableFastRender -e development"
   },
   "repository": {
