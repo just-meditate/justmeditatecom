@@ -1,0 +1,29 @@
+{
+  "title": "Just Meditate",
+  "disableKinds": ["taxonomyTerm"],
+  "enableEmoji": "true",
+  "enableRobotsTXT": "true",
+  "languageCode": "en-us",
+  "metaDataFormat": "json",
+  "summarylength": 40,
+  "blackfriday": {
+    "hrefTargetBlank": true,
+    "noreferrerLinks": true,
+    "noopenerLinks": true,
+    "OpenLinksInNewWindow": true,
+    "plainIDAnchors": true
+  },
+  "params": {
+    "description": "",
+    "social": ""
+  },
+  "sitemap": {
+    "changefreq": "monthly",
+    "filename": "sitemap.xml",
+    "priority": 0.5
+  },
+  "outputs": {
+    "home": ["html"],
+    "section": ["html"]
+  }
+}

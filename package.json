@@ -1,0 +1,38 @@
+{
+  "name": "justmeditatecom",
+  "version": "1.0.0",
+  "scripts": {
+    "build:development": "hugo -e development",
+    "build": "hugo -e production",
+    "clean:node": "rm -rf node_modules",
+    "clean": "rm -rf public resources",
+    "js": "babel assets/js/ --out-file assets/js/scripts.js && babel assets/sw.js --out-file src/sw.js",
+    "start": "npm run js && hugo server --disableFastRender -e development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/just-meditate/justmeditatecom.git"
+  },
+  "author": "Juan Villela",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/just-meditate/justmeditatecom/issues"
+  },
+  "homepage": "https://github.com/just-meditate/justmeditatecom#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.3",
+    "browserlist": "^1.0.1",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "postcss-cli": "^6.1.3",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^1.18.2"
+  }
+}
