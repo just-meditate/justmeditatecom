@@ -41,7 +41,14 @@ html {
 }
 
 body {
+  @extend %contArnd;
+  @extend %flex;
+  @extend %flexCol;
+  @extend %itmCent;
+  @extend %mA0;
+
   font-size: 1em;
+  height: 100vh;
   line-height: 1.2;
   overflow-x: hidden;
 }
@@ -53,8 +60,8 @@ a:visited {
 
 article,
 main {
-  @extend %full-width;
-  @extend %margin-center;
+  @extend %mHor;
+  @extend %w100;
 }
 
 blockquote {
@@ -92,7 +99,7 @@ h4 {
 }
 
 svg {
-  @extend %full-width;
+  @extend %w100;
 
   height: auto;
 }
@@ -105,32 +112,6 @@ image {
 li,
 p {
   margin: 5px 0;
-}
-
-.button {
-  @extend %border-curbed;
-  @extend %inline-block;
-  @extend %relative;
-  @extend %transition;
-
-  box-shadow: 0 5px 10px hsla(0, 0%, 0%, 0.12);
-  cursor: pointer;
-  font-size: 0.8rem;
-  height: 40px;
-  margin: 0 10px 15px;
-  min-width: 190px;
-  outline: none;
-  overflow: hidden;
-  padding: 0 25px;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-  white-space: nowrap;
-
-  &:hover {
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.16);
-    transform: translate3d(0px, -1px, 0px);
-  }
 }
 
 [disabled],
@@ -153,4 +134,10 @@ p {
   overflow: hidden;
   position: absolute !important;
   width: 1px;
+}
+
+#circle {
+  @extend %w100;
+
+  height: auto;
 }
