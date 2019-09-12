@@ -136,8 +136,23 @@ p {
   width: 1px;
 }
 
+.main {
+  @extend %contArnd;
+  @extend %flex;
+  @extend %flexCol;
+  @extend %itmCent;
+}
+
 #circle {
   @extend %w100;
 
   height: auto;
+}
+
+.counter {
+  @extend %abs;
+
+  color: #fff;
+  font-size: 1.1rem;
+  z-index: 10;
 }
