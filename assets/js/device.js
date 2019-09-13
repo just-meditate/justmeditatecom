@@ -84,15 +84,8 @@ const args = {
 };
 const gn = new GyroNorm();
 
-// Check OS
-if (
-  navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
-) {
-  hintW1.innerText = welcome.w1.motion;
-  med1.innerText = meditation.m1;
-  med2.innerText = meditation.m2;
-
-  // Mobile reset
+// Mobile reset
+const checkMotion = () => {
   gn.init(args).then(() => {
     gn.start(data => {
       const x = data.dm.x;
@@ -106,6 +99,28 @@ if (
       }
     });
   });
+};
+
+// Grand Permission
+const grandPremission = () => {
+  DeviceOrientationEvent.requestPermission()
+    .then(permissionState => {
+      if (permissionState === 'granted') {
+        checkMotion();
+      }
+    })
+    .catch(console.error);
+};
+
+// Check OS
+if (
+  navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
+) {
+  hintW1.innerText = welcome.w1.motion;
+  med1.innerText = meditation.m1;
+  med2.innerText = meditation.m2;
+
+  checkMotion();
 } else {
   hintW1.innerText = welcome.w1.desktop;
   med1.innerText = meditation.d1;
