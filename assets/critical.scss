@@ -74,14 +74,8 @@ p {
   margin: 5px 0;
 }
 
-[disabled],
-.disabled {
-  cursor: not-allowed;
-}
-
-[hidden],
-.hidden {
-  display: none !important;
+.none {
+  @extend %none;
 }
 
 :focus:not(:focus-visible) {

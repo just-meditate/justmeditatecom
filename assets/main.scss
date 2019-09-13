@@ -2,26 +2,95 @@
 @import '../assets/scss/mixins';
 
 // Hints
-.hints {
+.hint-wrap {
   @extend %abs;
   @extend %contBtwn;
-  @extend %fadeIn;
   @extend %flex;
   @extend %flexCol;
   @extend %itmCent;
   @extend %w100;
 
-  opacity: 0;
+  max-width: 450px;
+  padding: 0 20px;
   top: 7.5vh;
   z-index: 10;
 
-  .hint-item {
-    margin: 0 0 20px;
+  .hints {
+    opacity: 0;
+
+    &.visible {
+      @extend %block;
+      @extend %fadeIn;
+    }
+
+    &.hidden {
+      @extend %fadeOut;
+      @extend %none;
+    }
   }
 
-  .hint-main {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+  .hint-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .hint-item {
+      max-width: 350px;
+    }
+  }
+
+  .hint-w2 {
+    .hint-item:nth-child(2) {
+      @extend %fadeIn;
+
+      animation-delay: 1s;
+      opacity: 0;
+    }
+  }
+
+  .hint-w3 {
+    .hint-item:nth-child(2),
+    .hint-item:nth-child(3),
+    .hint-item:nth-child(4) {
+      @extend %fadeIn;
+
+      opacity: 0;
+    }
+
+    .hint-item:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .hint-item:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    .hint-item:nth-child(4) {
+      animation-delay: 3s;
+    }
+  }
+
+  .hint-med {
+    .hint-item:nth-child(2),
+    .hint-item:nth-child(3) {
+      @extend %fadeIn;
+
+      opacity: 0;
+    }
+
+    .hint-item:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .hint-item:nth-child(3) {
+      animation-delay: 2s;
+    }
+  }
+
+  .hint-item {
+    font-size: 1rem;
+    margin: 0 0 10px;
+    text-align: center;
   }
 }
 
@@ -29,12 +98,20 @@
 .icons {
   @extend %abs;
   @extend %contBtwn;
-  @extend %fadeIn;
-  @extend %flex;
   @extend %itmCent;
   @extend %w100;
 
-  animation-delay: 1.2s;
+  &.visible {
+    @extend %flex;
+    @extend %fadeIn;
+  }
+
+  &.hidden {
+    @extend %fadeOut;
+    @extend %none;
+  }
+
+  animation-delay: 2s;
   bottom: 10vh;
   max-width: 80px;
   opacity: 0;

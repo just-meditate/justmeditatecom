@@ -327,7 +327,7 @@
   transition: all var(--duration) ease;
 }
 
-// FadeIn
+// Fade
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -339,8 +339,19 @@
 }
 
 %fadeIn {
-  animation-duration: 700ms;
-  animation-fill-mode: forwards;
-  animation-name: fadeIn;
-  animation-timing-function: ease-in;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+%fadeOut {
+  animation: fadeOut 1s ease-out forwards;
 }
