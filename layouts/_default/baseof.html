@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
   {{ partial "head.html" . }}
+  {{ partial "header.html" . }}
   <body>
     <main class="main">
+      {{ partial "hints.html" . }}
       {{ block "main" . }}{{ end }}
+      {{ partial "icons.html" . }}
     </main>
     {{ partial "scripts.html" . }}
   </body>

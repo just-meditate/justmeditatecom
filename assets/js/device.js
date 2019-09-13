@@ -1,3 +1,5 @@
+const hint = document.querySelector('.hint-main');
+
 // Gyronorm
 const args = {
   decimalCount: 1,
@@ -14,7 +16,7 @@ if (
 ) {
   // Mobile reset
   gn.init(args).then(() => {
-    gn.start((data) => {
+    gn.start(data => {
       const x = data.dm.x;
       const y = data.dm.y;
 
@@ -26,8 +28,12 @@ if (
     });
   });
 } else {
+  hint.innerText = 'Don’t move your mouse and don’t press any keys';
+  setTimeout(() => {
+    startTimer();
+  }, 600);
   // Desktop reset
   document.addEventListener('mousemove', resetTimer);
   document.addEventListener('keydown', resetTimer);
   document.addEventListener('visibilitychange', resetTimer);
-};
+}

@@ -18,4 +18,8 @@
   {{ $cssRendered := resources.Get "critical.scss" | toCSS | postCSS | minify }}
   {{ $critical := $cssRendered.Content | safeCSS }}
   <style>{{ $critical }}</style>
+
+  {{/*  Main Stylesheet  */}}
+  {{ $main := resources.Get "main.scss" | toCSS | postCSS | minify }}
+  <link rel="stylesheet" href="{{ $main.Permalink }}">
 </head>

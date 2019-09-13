@@ -4,7 +4,7 @@
 }
 
 %bord {
-  border-radius: .125rem;
+  border-radius: 0.125rem;
 }
 
 %content {
@@ -35,8 +35,8 @@
 %gridFall {
   display: flex;
 
-  @supports (display:grid) {
-   display: grid !important;
+  @supports (display: grid) {
+    display: grid !important;
   }
 }
 
@@ -325,4 +325,22 @@
 // Animation
 %transAll {
   transition: all var(--duration) ease;
+}
+
+// FadeIn
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+%fadeIn {
+  animation-duration: 700ms;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  animation-timing-function: ease-in;
 }

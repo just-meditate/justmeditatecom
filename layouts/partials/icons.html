@@ -1,0 +1,8 @@
+<section class="icons">
+  {{ $silentIcon := resources.Get "img/silent.svg" | minify }}
+  {{ $silent := $silentIcon.Content | safeHTML }}
+  {{ $silent }}
+  {{ $headphonesIcon := resources.Get "img/headphones.svg" | minify }}
+  {{ $headphones := $headphonesIcon.Content | safeHTML }}
+  {{ $headphones }}
+</section>

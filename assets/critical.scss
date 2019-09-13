@@ -4,18 +4,12 @@
 // Reset
 body,
 div,
-em,
 footer,
 header,
 html,
-img,
 main,
 nav,
-section,
-small,
-span,
-strong,
-time {
+section {
   @extend %mA0;
   @extend %pA0;
 
@@ -58,44 +52,16 @@ a:visited {
   color: inherit;
 }
 
-article,
 main {
   @extend %mHor;
   @extend %w100;
 }
 
-blockquote {
-  padding-left: 15px;
-}
-
-h1,
-h2,
-h3,
-h4 {
+h1 {
+  font-size: 2.15rem;
   font-weight: 600;
   line-height: 1.4;
-}
-
-h2,
-h3,
-h4 {
-  margin-top: 10px;
-}
-
-h1 {
-  font-size: 3rem;
-}
-
-h2 {
-  font-size: 2.75rem;
-}
-
-h3 {
-  font-size: 2.5rem;
-}
-
-h4 {
-  font-size: 2.25rem;
+  text-align: center;
 }
 
 svg {
@@ -104,12 +70,6 @@ svg {
   height: auto;
 }
 
-image {
-  object-fit: contain;
-  object-position: left bottom;
-}
-
-li,
 p {
   margin: 5px 0;
 }
@@ -137,16 +97,35 @@ p {
 }
 
 .main {
-  @extend %contArnd;
+  @extend %contCent;
   @extend %flex;
   @extend %flexCol;
   @extend %itmCent;
+  @extend %rel;
+
+  height: calc(100vh - 95px);
+  padding: 20px;
+}
+
+.circle-wrap {
+  @extend %abs;
+  @extend %b0;
+  @extend %l0;
+  @extend %r0;
+  @extend %t0;
+
+  height: calc(100vh - 95px);
+  z-index: 5;
 }
 
 #circle {
+  @extend %fadeIn;
   @extend %w100;
 
+  animation-delay: 600ms;
   height: auto;
+  opacity: 0;
+  z-index: 5;
 }
 
 .counter {
@@ -154,5 +133,6 @@ p {
 
   color: #fff;
   font-size: 1.1rem;
+  margin: 0;
   z-index: 10;
 }

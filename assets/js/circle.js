@@ -19,8 +19,6 @@ const myTimer = () => {
 
 const startTimer = () => (timerInterval = setInterval(myTimer, 1000));
 
-startTimer();
-
 const resetTimer = () => {
   clearInterval(timerInterval);
 

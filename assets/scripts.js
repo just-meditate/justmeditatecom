@@ -368,8 +368,6 @@ const myTimer = () => {
 
 const startTimer = () => timerInterval = setInterval(myTimer, 1000);
 
-startTimer();
-
 const resetTimer = () => {
   clearInterval(timerInterval);
 
@@ -379,6 +377,8 @@ const resetTimer = () => {
 
   startTimer();
 };
+const hint = document.querySelector('.hint-main');
+
 // Gyronorm
 const args = {
   decimalCount: 1,
@@ -405,8 +405,12 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
     });
   });
 } else {
+  hint.innerText = 'Don’t move your mouse and don’t press any keys';
+  setTimeout(() => {
+    startTimer();
+  }, 600);
   // Desktop reset
   document.addEventListener('mousemove', resetTimer);
   document.addEventListener('keydown', resetTimer);
   document.addEventListener('visibilitychange', resetTimer);
-};
+}

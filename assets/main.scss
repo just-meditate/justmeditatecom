@@ -1,0 +1,47 @@
+@import '../assets/scss/extends';
+@import '../assets/scss/mixins';
+
+// Hints
+.hints {
+  @extend %abs;
+  @extend %contBtwn;
+  @extend %fadeIn;
+  @extend %flex;
+  @extend %flexCol;
+  @extend %itmCent;
+  @extend %w100;
+
+  opacity: 0;
+  top: 7.5vh;
+  z-index: 10;
+
+  .hint-item {
+    margin: 0 0 20px;
+  }
+
+  .hint-main {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+}
+
+// Icons
+.icons {
+  @extend %abs;
+  @extend %contBtwn;
+  @extend %fadeIn;
+  @extend %flex;
+  @extend %itmCent;
+  @extend %w100;
+
+  animation-delay: 1.2s;
+  bottom: 10vh;
+  max-width: 80px;
+  opacity: 0;
+  z-index: 10;
+
+  .icon-item {
+    height: 30px;
+    width: 30px;
+  }
+}
