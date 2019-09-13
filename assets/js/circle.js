@@ -2,9 +2,10 @@ const counter = document.querySelector('.counter');
 const circle = document.querySelector('#circle');
 const circleRad = circle.getAttribute('r');
 
+let isPaused = false;
 let cr = parseInt(circleRad, 10.0);
-let timer = 0,
-  timerInterval;
+let timer = 0;
+let timerInterval;
 
 // call mytimer function every sec.
 const myTimer = () => {
@@ -17,12 +18,17 @@ const myTimer = () => {
   }
 };
 
-const startTimer = () => (timerInterval = setInterval(myTimer, 1000));
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    if (!isPaused) myTimer();
+  }, 1000);
+};
 
 const resetTimer = () => {
   clearInterval(timerInterval);
 
   timer = 0;
+  cr = parseInt(circleRad, 10.0);
   counter.innerText = timer;
   circle.setAttribute('r', circleRad);
 

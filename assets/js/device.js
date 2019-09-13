@@ -122,9 +122,13 @@ if (
     resetInstructions();
   });
 
-  document.addEventListener('keydown', () => {
-    resetTimer();
-    resetInstructions();
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === 13) {
+      resetTimer();
+      resetInstructions();
+    } else if (e.keyCode === 32) {
+      isPaused = !isPaused;
+    }
   });
 
   document.addEventListener('visibilitychange', () => {
