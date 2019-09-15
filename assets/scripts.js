@@ -347,10 +347,29 @@
     return m;
   }, w;
 });
+// Circle
 const counter = document.querySelector('.counter');
 const circle = document.querySelector('#circle');
 const circleRad = circle.getAttribute('r');
 
+// Audio
+const audio = document.getElementById('audio');
+const playAudio = async () => {
+  try {
+    await audio.play();
+  } catch (error) {
+    console.error(error);
+  }
+};
+let vol = 0.2;
+audio.volume = vol;
+
+// increase volume
+const increaseVol = () => {
+  vol += 0.1;
+};
+
+// Timer
 let isPaused = false;
 let cr = parseInt(circleRad, 10.0);
 let timer = 0;
@@ -365,11 +384,18 @@ const myTimer = () => {
     cr += 0.15;
     circle.setAttribute('r', cr.toFixed(2));
   }
+
+  if (timer > 15 && timer < 23) {
+    increaseVol();
+    audio.volume = vol;
+    console.log(audio.volume);
+  }
 };
 
 const startTimer = () => {
   timerInterval = setInterval(() => {
     if (!isPaused) myTimer();
+    playAudio();
   }, 1000);
 };
 
@@ -379,6 +405,8 @@ const resetTimer = () => {
   timer = 0;
   cr = parseInt(circleRad, 10.0);
   counter.innerText = timer;
+  vol = 0.2;
+  audio.volume = vol;
   circle.setAttribute('r', circleRad);
 
   startTimer();
@@ -457,7 +485,6 @@ const resetInstructions = () => {
 
   startInstructions();
 };
-
 // Gyronorm
 const args = {
   decimalCount: 1,
@@ -468,13 +495,8 @@ const args = {
 };
 const gn = new GyroNorm();
 
-// Check OS
-if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-  hintW1.innerText = welcome.w1.motion;
-  med1.innerText = meditation.m1;
-  med2.innerText = meditation.m2;
-
-  // Mobile reset
+// Mobile reset
+const checkMotion = () => {
   gn.init(args).then(() => {
     gn.start(data => {
       const x = data.dm.x;
@@ -488,6 +510,30 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
       }
     });
   });
+};
+
+// Grand Permission
+const grandPremission = () => {
+  DeviceOrientationEvent.requestPermission().then(permissionState => {
+    if (permissionState === 'granted') {
+      checkMotion();
+      audio.volume = vol;
+    }
+  }).catch(console.error);
+};
+
+// Check OS
+if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+  hintW1.innerText = welcome.w1.motion;
+  med1.innerText = meditation.m1;
+  med2.innerText = meditation.m2;
+
+  setTimeout(() => {
+    startTimer();
+    startInstructions();
+  }, 600);
+
+  checkMotion();
 } else {
   hintW1.innerText = welcome.w1.desktop;
   med1.innerText = meditation.d1;

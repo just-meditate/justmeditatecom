@@ -122,3 +122,12 @@
     width: 30px;
   }
 }
+
+// Audio
+audio {
+  @extend %abs;
+  @extend %b0;
+  @extend %none;
+
+  margin: 0;
+}
