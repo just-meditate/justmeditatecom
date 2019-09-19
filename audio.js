@@ -17,10 +17,11 @@ const file = tracks[Math.floor(Math.random()*tracks.length)];
 // Pass Replace option
 const options = {
   files: [
+    'layouts/partials/head.html',
     'layouts/partials/audio.html',
   ],
-  from: /(src="{{ \$)([a-z]{4,6})/g,
-  to: `$1${file.replace('.mp3', '')}`,
+  from: /(src|href)(="{{ \$)([a-z]{4,6})/g,
+  to: `$1$2${file.replace('.mp3', '')}`,
 };
 
 // Run replace function
@@ -28,5 +29,7 @@ replace(options, (error, changes) => {
   if (error) {
     return console.error('Error occurred:', error);
   }
-  console.log('Modified file:', changes[0].file);
+  for (let files in changes) {
+    console.log('Modified file:', changes[files].file)
+  }
 })

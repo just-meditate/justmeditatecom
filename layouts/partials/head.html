@@ -14,6 +14,15 @@
   />
   <meta name="theme-color" content="#" />
 
+  {{ $bells := resources.Get "audio/bells.mp3" }}
+  {{ $fire := resources.Get "audio/fire.mp3" }}
+  {{ $forest := resources.Get "audio/forest.mp3" }}
+  {{ $jungle := resources.Get "audio/jungle.mp3" }}
+  {{ $pond := resources.Get "audio/pond.mp3" }}
+  {{ $rain := resources.Get "audio/rain.mp3" }}
+
+  <link rel="preload" href="{{ $rain.Permalink }}" as="audio" type="audio/mp3">
+
   {{/* Critical CSS */}}
   {{ $cssRendered := resources.Get "critical.scss" | toCSS | postCSS | minify }}
   {{ $critical := $cssRendered.Content | safeCSS }}
@@ -21,5 +30,5 @@
 
   {{/*  Main Stylesheet  */}}
   {{ $main := resources.Get "main.scss" | toCSS | postCSS | minify }}
-  <link rel="stylesheet" href="{{ $main.Permalink }}">
+  <link rel="stylesheet" href="{{ $rain.Permalink }}">
 </head>

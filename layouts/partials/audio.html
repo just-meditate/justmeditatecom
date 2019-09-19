@@ -5,6 +5,6 @@
 {{ $pond := resources.Get "audio/pond.mp3" }}
 {{ $rain := resources.Get "audio/rain.mp3" }}
 
-<audio id="audio" preload="auto" src="{{ $bells.Permalink }}" controls>
+<audio id="audio" preload="auto" src="{{ $rain.Permalink }}" loop="true" controls>
   Your browser does not support the <code>audio</code> element.
 </audio>
