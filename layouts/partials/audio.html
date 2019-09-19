@@ -1,4 +1,10 @@
-<audio id="audio" preload="auto" controls>
-  <source src="http://icecast.spc.org:8000/longplayer" type="audio/mpeg">
-  Your browser does not support the audio element.
+{{ $bells := resources.Get "audio/bells.mp3" }}
+{{ $fire := resources.Get "audio/fire.mp3" }}
+{{ $forest := resources.Get "audio/forest.mp3" }}
+{{ $jungle := resources.Get "audio/jungle.mp3" }}
+{{ $pond := resources.Get "audio/pond.mp3" }}
+{{ $rain := resources.Get "audio/rain.mp3" }}
+
+<audio id="audio" preload="auto" src="{{ $bells.Permalink }}" controls>
+  Your browser does not support the <code>audio</code> element.
 </audio>
