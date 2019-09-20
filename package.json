@@ -2,8 +2,8 @@
   "name": "justmeditatecom",
   "version": "1.0.0",
   "scripts": {
-    "build:development": "npm run audio && hugo -e development",
-    "build": "npm run audio && hugo -e production",
+    "build:development": "hugo -e development",
+    "build": "hugo -e production",
     "clean:node": "rm -rf node_modules",
     "clean": "rm -rf public resources",
     "js": "babel assets/js/ --out-file assets/scripts.js",
