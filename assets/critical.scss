@@ -64,6 +64,10 @@ h1 {
   text-align: center;
 }
 
+header {
+  z-index: 10;
+}
+
 svg {
   @extend %w100;
 
@@ -109,6 +113,7 @@ p {
   @extend %t0;
 
   height: calc(100vh - 95px);
+  overflow: visible;
   z-index: 5;
 }
 
