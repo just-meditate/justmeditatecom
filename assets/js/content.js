@@ -8,6 +8,7 @@ const med1 = document.querySelector('.hint-item.med1');
 const med2 = document.querySelector('.hint-item.med2');
 const icons = document.querySelector('.icons');
 let instructionsInterval;
+let medInstructionsInterval;
 
 const welcome = {
   w1: {
@@ -54,8 +55,16 @@ const cycleInstuctions = () => {
   }
 };
 
+const toggleMedInstructions = () => {
+  hintMed.classList.toggle('visible');
+  hintMed.classList.toggle('hidden');
+}
+
 const startInstructions = () =>
   (instructionsInterval = setInterval(cycleInstuctions, 1000));
+
+const startMedInstructionsToggle = () =>
+  (medInstructionsInterval = setInterval(toggleMedInstructions, 30000));
 
 const resetInstructions = () => {
   textTimer = 0;

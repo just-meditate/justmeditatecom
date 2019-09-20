@@ -420,6 +420,7 @@ const med1 = document.querySelector('.hint-item.med1');
 const med2 = document.querySelector('.hint-item.med2');
 const icons = document.querySelector('.icons');
 let instructionsInterval;
+let medInstructionsInterval;
 
 const welcome = {
   w1: {
@@ -466,7 +467,14 @@ const cycleInstuctions = () => {
   }
 };
 
+const toggleMedInstructions = () => {
+  hintMed.classList.toggle('visible');
+  hintMed.classList.toggle('hidden');
+};
+
 const startInstructions = () => instructionsInterval = setInterval(cycleInstuctions, 1000);
+
+const startMedInstructionsToggle = () => medInstructionsInterval = setInterval(toggleMedInstructions, 30000);
 
 const resetInstructions = () => {
   textTimer = 0;
@@ -531,6 +539,10 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
     startInstructions();
   }, 600);
 
+  setTimeout(() => {
+    startMedInstructionsToggle();
+  }, 45000);
+
   checkMotion();
 } else {
   hintW1.innerText = welcome.w1.desktop;
@@ -541,6 +553,10 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
     startTimer();
     startInstructions();
   }, 600);
+
+  setTimeout(() => {
+    startMedInstructionsToggle();
+  }, 75000);
 
   // Desktop reset
   document.addEventListener('mousemove', () => {

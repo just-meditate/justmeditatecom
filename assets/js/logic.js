@@ -49,6 +49,10 @@ if (
     startInstructions();
   }, 600);
 
+  setTimeout(() => {
+    startMedInstructionsToggle();
+  }, 45000);
+
   checkMotion();
 } else {
   hintW1.innerText = welcome.w1.desktop;
@@ -59,6 +63,10 @@ if (
     startTimer();
     startInstructions();
   }, 600);
+
+  setTimeout(() => {
+    startMedInstructionsToggle();
+  }, 75000);
 
   // Desktop reset
   document.addEventListener('mousemove', () => {
