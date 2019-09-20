@@ -25,7 +25,7 @@ const meditation = {
 
 const cycleInstuctions = () => {
   switch (timer) {
-    case 15:
+    case 10:
       hintW1.classList.add('hidden');
       hintW1.classList.remove('visible');
 
@@ -42,7 +42,7 @@ const cycleInstuctions = () => {
       hintW3.classList.add('visible');
       hintW3.classList.remove('hidden');
       break;
-    case 45:
+    case 40:
       hintW3.classList.add('hidden');
       hintW3.classList.remove('visible');
 

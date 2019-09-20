@@ -17,9 +17,8 @@ const checkMotion = () => {
 
       circle.innerHTML = `${x}, ${y}`;
 
-      if (x !== 0) {
-        resetTimer();
-        resetInstructions();
+      if (x !== 0 && timer >= 0 && timer <= 10) {
+        isPaused = !isPaused;
       }
     });
   });
@@ -63,8 +62,12 @@ if (
 
   // Desktop reset
   document.addEventListener('mousemove', () => {
-    resetTimer();
-    resetInstructions();
+    if (timer < 10) {
+      resetTimer();
+      resetInstructions();
+    } else if (timer >= 0 && timer <= 10) {
+      isPaused = !isPaused;
+    }
   });
 
   document.addEventListener('keydown', e => {
@@ -77,7 +80,11 @@ if (
   });
 
   document.addEventListener('visibilitychange', () => {
-    resetTimer();
-    resetInstructions();
+    if (timer < 10) {
+      resetTimer();
+      resetInstructions();
+    } else if (timer >= 0 && timer <= 10) {
+      isPaused = !isPaused;
+    }
   });
 }

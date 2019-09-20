@@ -17,7 +17,6 @@ const file = tracks[Math.floor(Math.random()*tracks.length)];
 // Pass Replace option
 const options = {
   files: [
-    'layouts/partials/head.html',
     'layouts/partials/audio.html',
   ],
   from: /(src|href)(="{{ \$)([a-z]{4,6})/g,

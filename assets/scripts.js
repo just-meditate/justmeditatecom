@@ -380,15 +380,14 @@ const myTimer = () => {
   timer = timer + 1;
   counter.innerText = timer;
 
-  if (timer > 15) {
-    cr += 0.15;
+  if (timer > 10) {
+    cr += 0.10;
     circle.setAttribute('r', cr.toFixed(2));
   }
 
-  if (timer > 15 && timer < 23) {
+  if (timer > 10 && timer < 18) {
     increaseVol();
     audio.volume = vol;
-    console.log(audio.volume);
   }
 };
 
@@ -438,7 +437,7 @@ const meditation = {
 
 const cycleInstuctions = () => {
   switch (timer) {
-    case 15:
+    case 10:
       hintW1.classList.add('hidden');
       hintW1.classList.remove('visible');
 
@@ -455,7 +454,7 @@ const cycleInstuctions = () => {
       hintW3.classList.add('visible');
       hintW3.classList.remove('hidden');
       break;
-    case 45:
+    case 40:
       hintW3.classList.add('hidden');
       hintW3.classList.remove('visible');
 
@@ -504,9 +503,8 @@ const checkMotion = () => {
 
       circle.innerHTML = `${x}, ${y}`;
 
-      if (x !== 0) {
-        resetTimer();
-        resetInstructions();
+      if (x !== 0 && timer >= 0 && timer <= 10) {
+        isPaused = !isPaused;
       }
     });
   });
@@ -546,8 +544,12 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
 
   // Desktop reset
   document.addEventListener('mousemove', () => {
-    resetTimer();
-    resetInstructions();
+    if (timer < 10) {
+      resetTimer();
+      resetInstructions();
+    } else if (timer >= 0 && timer <= 10) {
+      isPaused = !isPaused;
+    }
   });
 
   document.addEventListener('keydown', e => {
@@ -560,7 +562,11 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
   });
 
   document.addEventListener('visibilitychange', () => {
-    resetTimer();
-    resetInstructions();
+    if (timer < 10) {
+      resetTimer();
+      resetInstructions();
+    } else if (timer >= 0 && timer <= 10) {
+      isPaused = !isPaused;
+    }
   });
 }

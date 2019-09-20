@@ -31,15 +31,14 @@ const myTimer = () => {
   timer = timer + 1;
   counter.innerText = timer;
 
-  if (timer > 15) {
-    cr += 0.15;
+  if (timer > 10) {
+    cr += 0.10;
     circle.setAttribute('r', cr.toFixed(2));
   }
 
-  if (timer > 15 && timer < 23) {
+  if (timer > 10 && timer < 18) {
     increaseVol();
     audio.volume = vol;
-    console.log(audio.volume);
   }
 };
 
