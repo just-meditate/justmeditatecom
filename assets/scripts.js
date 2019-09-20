@@ -347,13 +347,11 @@
     return m;
   }, w;
 });
-// Circle
-const counter = document.querySelector('.counter');
-const circle = document.querySelector('#circle');
-const circleRad = circle.getAttribute('r');
-
 // Audio
-const audio = document.getElementById('audio');
+const tracks = ['bells', 'fire', 'forest', 'jungle', 'pond', 'rain'];
+const file = tracks[Math.floor(Math.random() * tracks.length)];
+
+const audio = new Audio(`/audio/${file}.mp3`);
 const playAudio = async () => {
   try {
     await audio.play();
@@ -368,6 +366,10 @@ audio.volume = vol;
 const increaseVol = () => {
   vol += 0.1;
 };
+// Circle
+const counter = document.querySelector('.counter');
+const circle = document.querySelector('#circle');
+const circleRad = circle.getAttribute('r');
 
 // Timer
 let isPaused = false;

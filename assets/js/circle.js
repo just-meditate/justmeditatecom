@@ -3,23 +3,6 @@ const counter = document.querySelector('.counter');
 const circle = document.querySelector('#circle');
 const circleRad = circle.getAttribute('r');
 
-// Audio
-const audio = document.getElementById('audio');
-const playAudio = async () => {
-  try {
-    await audio.play();
-  } catch (error) {
-    console.error(error);
-  }
-};
-let vol = 0.2;
-audio.volume = vol;
-
-// increase volume
-const increaseVol = () => {
-  vol += 0.1;
-};
-
 // Timer
 let isPaused = false;
 let cr = parseInt(circleRad, 10.0);
