@@ -2,13 +2,12 @@
   "name": "justmeditatecom",
   "version": "1.0.0",
   "scripts": {
-    "audio": "node audio.js",
-    "build:development": "npm run js && npm run audio && hugo -e development",
-    "build": "npm run js && npm run audio && hugo -e production",
+    "build:development": "npm run audio && hugo -e development",
+    "build": "npm run audio && hugo -e production",
     "clean:node": "rm -rf node_modules",
     "clean": "rm -rf public resources",
     "js": "babel assets/js/ --out-file assets/scripts.js",
-    "start": "npm run js && hugo server --disableFastRender -e development"
+    "start": "hugo server --disableFastRender -e development"
   },
   "repository": {
     "type": "git",
