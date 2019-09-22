@@ -391,13 +391,10 @@ const myTimer = () => {
     increaseVol();
     audio.volume = vol;
   }
-};
 
-const startTimer = () => {
-  timerInterval = setInterval(() => {
-    if (!isPaused) myTimer();
-    playAudio();
-  }, 1000);
+  if (timer === 45) startMedInstructionsToggle();
+
+  if (timer === 640) endInstructions();
 };
 
 const resetTimer = () => {
@@ -412,6 +409,19 @@ const resetTimer = () => {
 
   startTimer();
 };
+
+const stopTimer = () => {
+  isPaused = !isPaused;
+  resetTimer();
+};
+
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    if (!isPaused) myTimer();
+    if (timer > 640) stopTimer();
+    // playAudio();
+  }, 1000);
+};
 // Instructions
 const hintList = document.querySelectorAll('.hint-list');
 const hintW1 = document.querySelector('.hint-w1');
@@ -420,6 +430,9 @@ const hintW3 = document.querySelector('.hint-w3');
 const hintMed = document.querySelector('.hint-med');
 const med1 = document.querySelector('.hint-item.med1');
 const med2 = document.querySelector('.hint-item.med2');
+const hintEnd = document.querySelector('.hint-end');
+const end1 = document.querySelector('.hint-item.end1');
+const end2 = document.querySelector('.hint-item.end2');
 const icons = document.querySelector('.icons');
 let instructionsInterval;
 let medInstructionsInterval;
@@ -436,6 +449,12 @@ const meditation = {
   d2: 'Press ENTER to start over',
   m1: 'Flip your phone ot pause',
   m2: 'Shake your phone to start over'
+};
+const end = {
+  d1: 'Or press ENTER to start over',
+  d2: 'Scroll page at any time to visit our blog and news',
+  m1: 'Or shake your phone to start over',
+  m2: 'Swipe up at anytime to visit our blog and news'
 };
 
 const cycleInstuctions = () => {
@@ -474,11 +493,37 @@ const toggleMedInstructions = () => {
   hintMed.classList.toggle('hidden');
 };
 
-const startInstructions = () => instructionsInterval = setInterval(cycleInstuctions, 1000);
+const endInstructions = () => {
+  setTimeout(() => {
+    hintEnd.classList.toggle('hidden');
+    hintEnd.classList.toggle('visible');
+  }, 1000);
+};
 
-const startMedInstructionsToggle = () => medInstructionsInterval = setInterval(toggleMedInstructions, 30000);
+const resetHints = () => {
+  hintW1.classList.remove('hidden');
+  hintW1.classList.add('visible');
+
+  hintEnd.classList.add('hidden');
+  hintEnd.classList.remove('visible');
+};
+
+const startInstructions = () => {
+  instructionsInterval = setInterval(() => {
+    if (!isPaused) cycleInstuctions();
+  }, 1000);
+};
+
+const startMedInstructionsToggle = () => {
+  instructionsInterval = setInterval(() => {
+    if (!isPaused) toggleMedInstructions();
+  }, 30000);
+};
 
 const resetInstructions = () => {
+  clearInterval(instructionsInterval);
+  clearInterval(medInstructionsInterval);
+
   textTimer = 0;
 
   hintW1.classList.remove('hidden');
@@ -535,36 +580,35 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
   hintW1.innerText = welcome.w1.motion;
   med1.innerText = meditation.m1;
   med2.innerText = meditation.m2;
+  end1.innerText = end.m1;
+  end2.innerText = end.m2;
 
   setTimeout(() => {
     startTimer();
     startInstructions();
   }, 600);
-
-  setTimeout(() => {
-    startMedInstructionsToggle();
-  }, 45000);
 
   checkMotion();
 } else {
   hintW1.innerText = welcome.w1.desktop;
   med1.innerText = meditation.d1;
   med2.innerText = meditation.d2;
+  end1.innerText = end.d1;
+  end2.innerText = end.d2;
 
   setTimeout(() => {
     startTimer();
     startInstructions();
   }, 600);
 
-  setTimeout(() => {
-    startMedInstructionsToggle();
-  }, 75000);
-
   // Desktop reset
   document.addEventListener('mousemove', () => {
     if (timer < 10) {
-      resetTimer();
-      resetInstructions();
+      if (!isPaused) {
+        resetTimer();
+        resetInstructions();
+        resetHints();
+      }
     } else if (timer >= 0 && timer <= 10) {
       isPaused = !isPaused;
     }
@@ -574,6 +618,8 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
     if (e.keyCode === 13) {
       resetTimer();
       resetInstructions();
+      resetHints();
+      isPaused = false;
     } else if (e.keyCode === 32) {
       isPaused = !isPaused;
     }
@@ -581,8 +627,11 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
 
   document.addEventListener('visibilitychange', () => {
     if (timer < 10) {
-      resetTimer();
-      resetInstructions();
+      if (!isPaused) {
+        resetTimer();
+        resetInstructions();
+        resetHints();
+      }
     } else if (timer >= 0 && timer <= 10) {
       isPaused = !isPaused;
     }

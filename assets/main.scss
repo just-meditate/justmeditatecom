@@ -36,54 +36,26 @@
 
     .hint-item {
       max-width: 350px;
+
+      &:nth-child(n+2) {
+        @extend %fadeIn;
+
+        opacity: 0;
+      }
+
+      @for $i from 2 to 5 {
+        $sec: $i - 1;
+
+        &:nth-child(#{$i}) {
+          animation-delay: #{$sec}s;
+        }
+      }
     }
   }
 
-  .hint-w2 {
-    .hint-item:nth-child(2) {
-      @extend %fadeIn;
-
-      animation-delay: 1s;
-      opacity: 0;
-    }
-  }
-
-  .hint-w3 {
-    .hint-item:nth-child(2),
-    .hint-item:nth-child(3),
-    .hint-item:nth-child(4) {
-      @extend %fadeIn;
-
-      opacity: 0;
-    }
-
-    .hint-item:nth-child(2) {
-      animation-delay: 1s;
-    }
-
-    .hint-item:nth-child(3) {
-      animation-delay: 2s;
-    }
-
-    .hint-item:nth-child(4) {
-      animation-delay: 3s;
-    }
-  }
-
-  .hint-med {
-    .hint-item:nth-child(2),
-    .hint-item:nth-child(3) {
-      @extend %fadeIn;
-
-      opacity: 0;
-    }
-
-    .hint-item:nth-child(2) {
-      animation-delay: 1s;
-    }
-
-    .hint-item:nth-child(3) {
-      animation-delay: 2s;
+  .hint-end {
+    .hint-item.end-main {
+      margin-bottom: 20px;
     }
   }
 

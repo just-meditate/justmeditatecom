@@ -23,13 +23,10 @@ const myTimer = () => {
     increaseVol();
     audio.volume = vol;
   }
-};
 
-const startTimer = () => {
-  timerInterval = setInterval(() => {
-    if (!isPaused) myTimer();
-    playAudio();
-  }, 1000);
+  if (timer === 45) startMedInstructionsToggle();
+
+  if (timer === 640) endInstructions();
 };
 
 const resetTimer = () => {
@@ -43,4 +40,17 @@ const resetTimer = () => {
   circle.setAttribute('r', circleRad);
 
   startTimer();
+};
+
+const stopTimer = () => {
+  isPaused = !isPaused;
+  resetTimer();
+};
+
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    if (!isPaused) myTimer();
+    if (timer > 640) stopTimer();
+    // playAudio();
+  }, 1000);
 };
