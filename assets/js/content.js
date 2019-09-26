@@ -1,4 +1,4 @@
-// Instructions
+// Message Elements
 const hintList = document.querySelectorAll('.hint-list');
 const hintW1 = document.querySelector('.hint-w1');
 const hintW2 = document.querySelector('.hint-w2');
@@ -10,9 +10,11 @@ const hintEnd = document.querySelector('.hint-end');
 const end1 = document.querySelector('.hint-item.end1');
 const end2 = document.querySelector('.hint-item.end2');
 const icons = document.querySelector('.icons');
+
 let instructionsInterval;
 let medInstructionsInterval;
 
+// Messages
 const welcome = {
   w1: {
     desktop: "Don't move your mouse and don't press any keys",
@@ -33,6 +35,7 @@ const end = {
   m2: 'Swipe up at anytime to visit our blog and news',
 };
 
+// Cycle throung messages based on session time mark.
 const cycleInstuctions = () => {
   switch (timer) {
     case 10:
@@ -64,18 +67,21 @@ const cycleInstuctions = () => {
   }
 };
 
+// Toogle meditation messages.
 const toggleMedInstructions = () => {
   hintMed.classList.toggle('visible');
   hintMed.classList.toggle('hidden');
-}
+};
 
+// Terminate session and show end messages.
 const endInstructions = () => {
   setTimeout(() => {
     hintEnd.classList.toggle('hidden');
     hintEnd.classList.toggle('visible');
   }, 1000);
-}
+};
 
+// Reset all messages to be hidden.
 const resetHints = () => {
   hintW1.classList.remove('hidden');
   hintW1.classList.add('visible');
@@ -84,18 +90,21 @@ const resetHints = () => {
   hintEnd.classList.remove('visible');
 };
 
+// Start messages cycle.
 const startInstructions = () => {
   instructionsInterval = setInterval(() => {
     if (!isPaused) cycleInstuctions();
   }, 1000);
 };
 
+// Star meditation  messages cycle.
 const startMedInstructionsToggle = () => {
   instructionsInterval = setInterval(() => {
     if (!isPaused) toggleMedInstructions();
   }, 30000);
 };
 
+// Reset all messages cycles.
 const resetInstructions = () => {
   clearInterval(instructionsInterval);
   clearInterval(medInstructionsInterval);

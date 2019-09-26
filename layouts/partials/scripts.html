@@ -1,2 +1,7 @@
-{{ $js := resources.Get "scripts.js" | minify }}
+{{ $helpers := resources.Get "js/helpers.js" | minify }}
+{{ $audio := resources.Get "js/audio.js" | minify }}
+{{ $circle := resources.Get "js/circle.js" | minify }}
+{{ $content := resources.Get "js/content.js" | minify }}
+{{ $run := resources.Get "js/run.js" | minify }}
+{{ $js := slice $helpers $audio $circle $content $run | resources.Concat "js/bundle.js" }}
 <script defer type="text/javascript" src="{{ $js.Permalink }}"></script>

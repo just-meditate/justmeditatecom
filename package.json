@@ -6,7 +6,7 @@
     "build": "hugo -e production",
     "clean:node": "rm -rf node_modules",
     "clean": "rm -rf public resources",
-    "js": "babel assets/js/ --out-file assets/scripts.js",
+    "js": "babel public/js/bundle.js --out-file public/js/bundle.js",
     "start": "hugo server --disableFastRender -e development"
   },
   "repository": {
@@ -26,10 +26,10 @@
     "ios >= 10"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/register": "^7.6.0",
-    "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.3",
     "browserlist": "^1.0.1",
     "eslint": "^6.3.0",

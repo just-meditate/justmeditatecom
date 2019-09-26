@@ -9,26 +9,29 @@ let cr = parseInt(circleRad, 10.0);
 let timer = 0;
 let timerInterval;
 
-// call mytimer function every sec.
 const myTimer = () => {
   timer = timer + 1;
   counter.innerText = timer;
 
+  // Grow circle radius with timer.
   if (timer > 10) {
-    cr += 0.10;
+    cr += 0.1;
     circle.setAttribute('r', cr.toFixed(2));
   }
 
-  if (timer > 10 && timer < 18) {
+  // Start incrasing the volume until it hits 0.7.
+  if (timer === 10) {
     increaseVol();
-    audio.volume = vol;
   }
 
+  // Start cycling through meditaiton instructions.
   if (timer === 45) startMedInstructionsToggle();
 
+  // At the 10:40 minute mark, end the session.
   if (timer === 640) endInstructions();
 };
 
+// Timer, circle radius, and volue are reset.
 const resetTimer = () => {
   clearInterval(timerInterval);
 
@@ -42,15 +45,19 @@ const resetTimer = () => {
   startTimer();
 };
 
+// Timer is reset and pause. Audio volume goes down and then pauses.
 const stopTimer = () => {
   isPaused = !isPaused;
+  pauseAudio();
   resetTimer();
 };
 
+// Timer interval starts.
 const startTimer = () => {
   timerInterval = setInterval(() => {
+    // Is paused flag is not true, run timer interval.
     if (!isPaused) myTimer();
+    // If timer is at 10:40 mins, stop the whole session.
     if (timer > 640) stopTimer();
-    // playAudio();
   }, 1000);
 };
