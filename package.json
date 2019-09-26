@@ -2,11 +2,13 @@
   "name": "justmeditatecom",
   "version": "1.0.0",
   "scripts": {
-    "build:development": "hugo -e development",
-    "build": "hugo -e production",
-    "clean:node": "rm -rf node_modules",
+    "build": "hugo -e production && npm run js",
+    "build:development": "hugo -e development && npm run js",
     "clean": "rm -rf public resources",
-    "js": "babel public/js/bundle.js --out-file public/js/bundle.js",
+    "clean:node": "rm -rf node_modules",
+    "js": "npm run js:babel && npm run js:terser",
+    "js:babel": "babel public/js/bundle.js --out-file public/js/bundle.js",
+    "js:terser": "terser public/js/bundle.js -o public/js/bundle.js -c -m",
     "start": "hugo server --disableFastRender -e development"
   },
   "repository": {
@@ -39,7 +41,8 @@
     "eslint-plugin-prettier": "^3.1.0",
     "postcss-cli": "^6.1.3",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "terser": "^4.3.3"
   },
   "dependencies": {
     "replace-in-file": "^4.1.3"
