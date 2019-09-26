@@ -190,16 +190,17 @@ const resetInstructions = () => {
 
   startInstructions();
 };
-// Start session timer with a little delay to wait for fade in animation
-setTimeout(() => {
-  startTimer();
-  startInstructions();
-}, 600);
-
-// Reset session on circle click within the first 10s
-// Pause session on circle click after 10s
 circle.addEventListener('click', () => {
-  if (timer < 10) {
+  if (timer === 0) {
+    // Start session timer with a little delay to wait for fade in animation
+    setTimeout(() => {
+      playAudio();
+      startTimer();
+      startInstructions();
+    }, 600);
+  } else if (timer < 10) {
+    // Reset session on circle click within the first 10s
+    // Pause session on circle click after 10s
     if (!isPaused) {
       resetTimer();
       resetInstructions();
@@ -212,12 +213,10 @@ circle.addEventListener('click', () => {
 
 // Reset session on tab change within the first 10s
 document.addEventListener('visibilitychange', () => {
-  if (timer < 10) {
-    if (!isPaused) {
-      resetTimer();
-      resetInstructions();
-      resetHints();
-    }
+  if (timer < 10 && !isPaused) {
+    resetTimer();
+    resetInstructions();
+    resetHints();
   }
 });
 
