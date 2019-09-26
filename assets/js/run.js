@@ -19,7 +19,7 @@ circle.addEventListener('click', () => {
 
 // Reset session on tab change within the first 10s.
 document.addEventListener('visibilitychange', () => {
-  if (timer < 10 && !isPaused) {
+  if (timer > 0 && timer < 10 && !isPaused) {
     resetTimer();
     resetInstructions();
     resetHints();
